@@ -32,8 +32,6 @@ const Login = () => {
                 <input type="password" name="password" placeholder='Your Password' onChange={(e) => setPassword(e.target.value)} />
                 <button className="btn btn-primary btn-login" onClick={handleClick} disabled={isFetching}>Login</button>
                 {error && <p className="error">Something went wrong...</p>}
-                <a href="./resetPassword" className="login-a">Forgot password?</a>
-                <p>Haven't got an account? <a href="/personAdd" className="register-a">SIGN UP </a></p>
 
                 </form>
             </div>
