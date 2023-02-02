@@ -1,0 +1,9 @@
+.productList{
+    flex: 4
+}
+
+.productListImg{
+    height: 40px;
+    border: 1px solid #ddd;
+    margin-right:20px ;
+}

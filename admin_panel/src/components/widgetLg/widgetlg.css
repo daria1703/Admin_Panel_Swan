@@ -1,0 +1,67 @@
+.wigdetLg{
+    flex: 2;
+    border: 1px solid #ddd
+}
+
+.lgButton{
+    width: 85px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.lgbuttona{
+    text-decoration: none;
+    text-align: center;
+    
+}
+
+.widgetLgTr{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.lgButton.Approved{
+    background-color: rgba(172, 255, 47, 0.322);
+    color: green;
+}
+
+.lgButton.Declined{
+    background-color: rgba(240, 128, 128, 0.363);
+    color: lightcoral;
+}
+
+.lgButton.Pending{
+    background-color: lightcyan;
+    color: rgba(0, 0, 255, 0.548);
+}
+
+.widgetLgTbale{
+    width: 100%;
+    border-spacing: 20px;
+}
+
+.widgetLgTitle{
+    padding: 20px 0px 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.widgetLgTh{
+    padding: 10px 10px 10px 20px;
+}
+
+.widgetLgUser{
+    padding: 10px 10px 10px 20px;
+}
+
+.widgetLgData{
+    padding: 10px 10px 10px 20px;
+}
+
+.widgetLgAmount{
+    padding: 10px 10px 10px 20px;
+}
+
+.widgetLgStatus{
+    padding: 10px 10px 10px 20px;
+}

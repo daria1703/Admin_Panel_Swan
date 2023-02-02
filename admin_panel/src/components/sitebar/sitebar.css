@@ -1,0 +1,46 @@
+.sitebar{
+   flex:1; 
+   background-color: #103946;
+   color: #fff;
+   position: sticky;
+   top: 60px;
+   height: calc(100vh - 60px);
+}
+
+.sitebarTitle{
+    font-size: 14px;
+    opacity: 0.7;
+    margin-left: 10px;
+    padding-top: 10px;
+}
+
+.sidebarList{
+    list-style: none;
+    
+}
+
+.sitebarListItem{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    margin-right: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.sitebarListItem.active,
+.sitebarListItem:hover{
+    background-color: rgba(221, 221, 221, 0.274);
+    padding-left: 5px;
+}
+
+.sidebarLink{
+    color: #fff;
+    text-decoration: none;
+}
+
+.sidebarLink:hover{
+    color: #ffffff55;
+    text-decoration: none;
+}

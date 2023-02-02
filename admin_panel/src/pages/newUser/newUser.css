@@ -1,0 +1,37 @@
+.newProduct{
+    flex: 4;
+    padding: 20px;
+}
+
+.userNewTitle{
+    color: #103946;
+    font-size: 36px;
+}
+
+.createUser{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+form > .userCreateInput > input {
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    width: 50%;
+    font-size: 1rem;
+    display: flex;
+    background-color: transparent;
+}
+
+.userCreateInput{
+    width: 400px;
+    display: flex;
+    margin: 10px 0px 20px 0px;
+    flex-direction: column;
+}
+
+.createLabel{
+    padding-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}

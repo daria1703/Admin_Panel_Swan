@@ -1,0 +1,11 @@
+.chartContainer{
+    margin: 30px 60px 0 40px;
+    border: 1px solid #ddd
+}
+
+.chartTitle{
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+

@@ -1,0 +1,8 @@
+.home{
+    flex: 4;
+}
+
+.homeWidgents{
+    display: flex;
+    margin: 30px 60px 30px 40px;
+}

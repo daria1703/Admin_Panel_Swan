@@ -1,0 +1,51 @@
+.product{
+    flex: 4;
+    padding: 20px;
+}
+
+.productContainer{
+    display: flex;
+    padding: 30px;
+}
+
+.productShow{
+    flex: 1;
+    border: 1px solid #ddd;
+    margin-right: 20px;
+}
+
+.productShowTop{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.productEditImg{
+   height: 330px; 
+   margin-bottom: 20px;
+}
+
+.productatrubutelist{
+    display: flex;
+    flex-direction: column;
+}
+
+.newProduct{
+    flex: 4;
+    padding: 0px 20px 20px 20px;
+    border: 1px solid #ddd
+}
+
+.editProductTitle{
+    padding-top: 20px;
+}
+.userNewTitle{
+    color: #103946;
+    font-size: 36px;
+}
+
+.editProdut{
+    display: flex;
+    flex-wrap: wrap;
+}
+
