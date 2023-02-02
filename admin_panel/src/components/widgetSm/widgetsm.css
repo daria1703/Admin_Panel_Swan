@@ -10,7 +10,8 @@
 
 .userData{
     padding-top: 2px;
-    margin-bottom: 8px
+    margin-bottom: 15px;
+    width:170px
 }
 
 .btnUserEdit{

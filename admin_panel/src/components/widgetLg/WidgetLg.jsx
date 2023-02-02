@@ -1,7 +1,22 @@
 import React from 'react'
 import "./widgetlg.css"
+import { useEffect, useState } from "react";
+import { userRequest } from "../../requestMethods";
+import {format} from "timeago.js"
 
 export default function WidgetSm() {
+
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+      const getOrders = async () => {
+        try {
+          const res = await userRequest.get("orders/?new=true");
+          setOrders(res.data);
+        } catch {}
+      };
+      getOrders();
+    }, []);
 
     const Button = ({type}) =>{
         return <a className='lgbuttona' href=""><div className={"lgButton " + type}>{type}</div> </a>
@@ -17,62 +32,23 @@ export default function WidgetSm() {
                 <th className="widgetLgTh">Amount</th>
                 <th className="widgetLgTh">Status</th>
             </tr>
-            <tr className="widgetLgTr">
+            {orders.map((order) => (
+            <tr className="widgetLgTr" key={order._id}>
                 <td className='widgetLgUser'>
-                    <span className='userNameLg'>User Name</span>
+                    <span className='userNameLg'>{order.userId}</span>
                 </td>
                 <td className='widgetLgData'>
-                    <span className='lgData'>21 January 2023</span>
+                    <span className='lgData'>{format(order.createdAt)}</span>
                 </td>
                 <td className='widgetLgAmount'>
-                    <span className='lgAmount'>$200</span>
+                    <span className='lgAmount'>${order.amount}</span>
                 </td>
                 <td className='widgetLgStatus'>
-                    <Button type="Approved"/>
+                    <Button type={order.status}/>
                 </td>
             </tr>
-            <tr className="widgetLgTr">
-                <td className='widgetLgUser'>
-                    <span className='userNameLg'>User Name</span>
-                </td>
-                <td className='widgetLgData'>
-                    <span className='lgData'>21 January 2023</span>
-                </td>
-                <td className='widgetLgAmount'>
-                    <span className='lgAmount'>$200</span>
-                </td>
-                <td className='widgetLgStatus'>
-                    <Button type="Declined"/>
-                </td>
-            </tr>
-            <tr className="widgetLgTr">
-                <td className='widgetLgUser'>
-                    <span className='userNameLg'>User Name</span>
-                </td>
-                <td className='widgetLgData'>
-                    <span className='lgData'>21 January 2023</span>
-                </td>
-                <td className='widgetLgAmount'>
-                    <span className='lgAmount'>$200</span>
-                </td>
-                <td className='widgetLgStatus'>
-                    <Button type="Pending"/>
-                </td>
-            </tr>
-            <tr className="widgetLgTr">
-                <td className='widgetLgUser'>
-                    <span className='userNameLg'>User Name</span>
-                </td>
-                <td className='widgetLgData'>
-                    <span className='lgData'>21 January 2023</span>
-                </td>
-                <td className='widgetLgAmount'>
-                    <span className='lgAmount'>$200</span>
-                </td>
-                <td className='widgetLgStatus'>
-                    <Button type="Approved"/>
-                </td>
-            </tr>
+            
+            ))}
         </table>
     </div>
   )
