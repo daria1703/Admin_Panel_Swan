@@ -49,7 +49,7 @@ export default function ProductsList() {
           renderCell: (params) =>{
             return(
               <div className="iconuser">
-                <Link class="link-btn2" to={`/products/product/${params.row._id}`}>
+                <Link class="link-btn2" to={`/product/${params.row._id}`}>
                   <div className="btnUserEdit">
                     <CreateIcon /> 
                   </div>
@@ -81,7 +81,7 @@ export default function ProductsList() {
     rows={products}
     columns={columns}
     pageSize={10}
-    getRowId={(row) => row._id}
+    getRowId={(row) => row._id }
     rowsPerPageOptions={[5]}
     checkboxSelection
   /></div>
