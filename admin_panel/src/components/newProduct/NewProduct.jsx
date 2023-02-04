@@ -1,64 +1,96 @@
 import React from 'react'
 import "./newProduct.css"
 import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { addProduct } from "../../redux/apiCalls";
+import { useDispatch } from "react-redux";
 
 export default function NewProduct() {
+
+const [inputs, setInputs] = useState({});
+const [file, setFile] = useState(null);
+const [cat, setCat] = useState([]);
+const [size, setSize] = useState([]);
+const dispatch = useDispatch();
+
+const handleChange = (e) => {
+    setInputs((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
+  const handleCat = (e) => {
+    setCat(e.target.value.split(","));
+  };
+  const handleSize = (e) => {
+    setSize(e.target.value.split(","))
+  }
+
+//   useEffect(()=>{
+//     getProducts(dispatch);
+//   },[dispatch]);
+
+  const handleClick = (e) => {
+        const product = { ...inputs, categories: cat, size: size };
+          addProduct(product, dispatch);
+  };
+
+
   return (
     <div className="newProductContianer">
       <div className="newProduct">
-            <h3 className="editProductTitle">Edit Product</h3>
+            <h3 className="editProductTitle">Create New Product</h3>
             <form className="editProdut">
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Product Name</label>
-                <input className="createInput" type="text" placeholder='Enter Product Name'/>
+                <input name='product_name' className="createInput" type="text" placeholder='Enter Product Name' onChange={handleChange} />
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Image</label>
-                <input className="createInput" type="text" placeholder='Enter Image (link)'/>
+                <input name='img' className="createInput" type="text" placeholder='Enter Image (link)' onChange={handleChange} />
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Category</label>
-                <input className="createInput" type="text" placeholder='Enter Category'/>
+                <input name='category' className="createInput" type="text" placeholder='Enter Category' onChange={handleCat} />
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Short Description</label>
-                <input className="createInput" type="text" placeholder='Enter Short Description'/>
+                <input name='shotr_description' className="createInput" type="text" placeholder='Enter Short Description' onChange={handleChange} />
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Metter</label>
-                <input className="createInput" type="text" placeholder='Enter Matter'/>
+                <input name='matter' className="createInput" type="text" placeholder='Enter Matter' onChange={handleChange} />
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Assay</label>
-                <input className="createInput" type="text" placeholder='Enter Assay'/>
+                <input name='assay' className="createInput" type="text" placeholder='Enter Assay' onChange={handleChange} />
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Size</label>
-                <input className="createInput" type="text" placeholder='Enter Size'/>
+                <input name='size' className="createInput" type="text" placeholder='Enter Size' onChange={handleSize} />
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Brand</label>
-                <input className="createInput" type="text" placeholder='Enter Brand'/>
+                <input name='banrd' className="createInput" type="text" placeholder='Enter Brand' onChange={handleChange} />
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Quantity</label>
-                <input className="createInput" type="text" placeholder='Enter Quantity'/>
+                <input name='quantity' className="createInput" type="number" placeholder='Enter Quantity' onChange={handleChange} />
             </div>
             <div className='userCreateInput'style={{width:300}}>
                 <label className="createLabel">Price</label>
-                <input className="createInput" type="text" placeholder='Enter Price'/>
+                <input name='net_price' className="createInput" type="number" placeholder='Enter Price' onChange={handleChange} />
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Weight</label>
-                <input className="createInput" type="text" placeholder='Enter Weight'/>
+                <input name='weight' className="createInput" type="text" placeholder='Enter Weight'onChange={handleChange} />
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Description</label>
-                <input className="createInput" type="text" placeholder='Enter Description'/>
+                <input name='desctiption' className="createInput" type="text" placeholder='Enter Description' onChange={handleChange} />
             </div>
-            <Link to={`/users`} className="creaeUser" style={{marginTop: 16}}>
-                <div className="createUserBtn">Edit Product</div>
-            </Link>
+            <button onClick={handleClick} className="creaeUser" style={{marginTop: 16}}>
+                <div className="createUserBtn">Create New Product</div>
+            </button>
         </form>
             </div>
     </div>

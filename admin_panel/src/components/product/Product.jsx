@@ -1,9 +1,46 @@
 import React from 'react'
 import "./product.css"
-import productimg from '../../img/Swan _Eye _Ring.jpg'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import { updateProduct } from "../../redux/apiCalls";
+import { useDispatch } from "react-redux";
 
 export default function Product() {
+
+    const location = useLocation();
+    const productId = location.pathname.split("/")[2];
+
+    const product = useSelector((state) =>
+        state.product.products.find((product) => product._id === productId)
+    );
+
+    const [inputs, setInputs] = useState({});
+    const [cat, setCat] = useState([]);
+    const [size, setSize] = useState([]);
+    const dispatch = useDispatch();
+
+    const handleChange = (e) => {
+        setInputs((prev) => {
+        return { ...prev, [e.target.name]: e.target.value };
+        });
+    };
+    
+    const handleCat = (e) => {
+        setCat(e.target.value.split(","));
+    };
+    
+    const handleSize = (e) => {
+        setSize(e.target.value.split(","))
+    }
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    const product = { ...inputs, category: cat, size: size};
+    updateProduct(productId, product, dispatch);
+    console.log(productId)
+};
+
   return (
     <div className='product'>
       <div className="titleContainer">
@@ -17,19 +54,20 @@ export default function Product() {
         <div className="productContainer">
             <div className="productShow">
                 <div className="productShowTop">
-                    <span><img src={productimg} alt="product" className='productEditImg'/></span>
+                    <span><img src={product.img} alt="product" className='productEditImg'/></span>
                     <div className="productatrubutelist">
-                      <span className="product_test"><strong>Product Name: </strong>Name</span>
-                      <span className='product_test'><strong>Category: </strong>Category</span>
-                      <span className="product_test"><strong>Short description: </strong>Short description of product</span>
-                      <span className="product_test"><strong>Matter: </strong>Golg</span>
-                      <span className="product_test"><strong>Assay: </strong>925</span>
-                      <span className="product_test"><strong>Size: </strong>2,3,4</span>
-                      <span className="product_test"><strong>Brand: </strong>Say YES</span>
-                      <span className="product_test"><strong>Quantity: </strong>100</span>
-                      <span className="product_test"><strong>Price: </strong>$100</span>
-                      <span className="product_test"><strong>Weight: </strong>5 grams</span>
-                      <span className="product_test"><strong>Description: </strong>Long description of product Long description of product Long description of product Long description of product</span>
+                      <span className="product_test"><strong>Product Name: </strong>{product.product_name}</span>
+                      <span className='product_test'><strong>Category: </strong>{product.category?.map((s) => (<span style={{textTransform:"capitalize"}} key={s}>&nbsp;{s},</span>))}</span>
+                      <span className="product_test"><strong>Short description: </strong>{product.short_description}</span>
+                      <span className="product_test"><strong>Matter: </strong>{product.matter}</span>
+                      <span className="product_test"><strong>Assay: </strong>{product.assay}</span>
+                      <span className="product_test"><strong>Size: </strong>{product.size?.map((s) => (<span  key={s}>&nbsp;{s},</span>
+                ))}</span>
+                      <span className="product_test"><strong>Brand: </strong>{product.brand}</span>
+                      <span className="product_test"><strong>Quantity: </strong>{product.quantity}</span>
+                      <span className="product_test"><strong>Price: </strong>${product.net_price}</span>
+                      <span className="product_test"><strong>Weight: </strong>{product.weight} grams</span>
+                      <span className="product_test"><strong>Description: </strong>{product.description}</span>
                     </div>
                 </div>
             </div>
@@ -38,55 +76,55 @@ export default function Product() {
             <form className="editProdut">
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Product Name</label>
-                <input className="createInput" type="text" placeholder='Enter Product Name'/>
+                <input name='product_name' className="createInput" type="text" placeholder={product.product_name} onChange={handleChange}/>
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Image</label>
-                <input className="createInput" type="text" placeholder='Enter Image (link)'/>
+                <input name='img' className="createInput" type="text" placeholder={product.img} onChange={handleChange}/>
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Category</label>
-                <input className="createInput" type="text" placeholder='Enter Category'/>
+                <input name='category' className="createInput" type="text" placeholder={product.category} onChange={handleCat}/>
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Short Description</label>
-                <input className="createInput" type="text" placeholder='Enter Short Description'/>
+                <input name='shotr_description' className="createInput" type="text" placeholder={product.short_description} onChange={handleChange}/>
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Metter</label>
-                <input className="createInput" type="text" placeholder='Enter Matter'/>
+                <input name='matter' className="createInput" type="text" placeholder={product.matter} onChange={handleChange}/>
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Assay</label>
-                <input className="createInput" type="text" placeholder='Enter Assay'/>
+                <input name='assay' className="createInput" type="text" placeholder={product.assay} onChange={handleChange}/>
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Size</label>
-                <input className="createInput" type="text" placeholder='Enter Size'/>
+                <input name='size' className="createInput" type="text" placeholder={product.size} onChange={handleSize}/>
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Brand</label>
-                <input className="createInput" type="text" placeholder='Enter Brand'/>
+                <input name='banrd' className="createInput" type="text" placeholder={product.brand} onChange={handleChange}/>
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Quantity</label>
-                <input className="createInput" type="text" placeholder='Enter Quantity'/>
+                <input name='quantity' className="createInput" type="number" placeholder={product.quantity} onChange={handleChange}/>
             </div>
             <div className='userCreateInput'style={{width:300}}>
                 <label className="createLabel">Price</label>
-                <input className="createInput" type="text" placeholder='Enter Price'/>
+                <input name='net_price' className="createInput" type="number" placeholder={product.net_price} onChange={handleChange}/>
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Weight</label>
-                <input className="createInput" type="text" placeholder='Enter Weight'/>
+                <input name='weight' className="createInput" type="text" placeholder={product.weight} onChange={handleChange}/>
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Description</label>
-                <input className="createInput" type="text" placeholder='Enter Description'/>
+                <input name='desctiption' className="createInput" type="text" placeholder={product.description} onChange={handleChange}/>
             </div>
-            <Link to={`/users`} className="creaeUser" style={{marginTop: 16}}>
+            <button onClick={handleClick} className="creaeUser" style={{marginTop: 16}}>
                 <div className="createUserBtn">Edit Product</div>
-            </Link>
+            </button>
         </form>
             </div>
         </div>
