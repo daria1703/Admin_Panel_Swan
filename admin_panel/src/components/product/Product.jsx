@@ -35,10 +35,11 @@ export default function Product() {
     }
 
   const handleClick = (e) => {
-    e.preventDefault();
+    
     const product = { ...inputs, category: cat, size: size};
     updateProduct(productId, product, dispatch);
-    console.log(productId)
+    // e.preventDefault();
+    // window.location.reload(false)
 };
 
   return (
@@ -88,7 +89,7 @@ export default function Product() {
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Short Description</label>
-                <input name='shotr_description' className="createInput" type="text" placeholder={product.short_description} onChange={handleChange}/>
+                <input name='short_description' className="createInput" type="text" placeholder={product.short_description} onChange={handleChange}/>
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Metter</label>
@@ -100,11 +101,11 @@ export default function Product() {
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Size</label>
-                <input name='size' className="createInput" type="text" placeholder={product.size} onChange={handleSize}/>
+                <input name='size' className="createInput" type="number" placeholder={product.size} onChange={handleSize}/>
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Brand</label>
-                <input name='banrd' className="createInput" type="text" placeholder={product.brand} onChange={handleChange}/>
+                <input name='brand' className="createInput" type="text" placeholder={product.brand} onChange={handleChange}/>
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Quantity</label>
@@ -120,11 +121,11 @@ export default function Product() {
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Description</label>
-                <input name='desctiption' className="createInput" type="text" placeholder={product.description} onChange={handleChange}/>
+                <input name='description' className="createInput" type="text" placeholder={product.description} onChange={handleChange}/>
             </div>
-            <button onClick={handleClick} className="creaeUser" style={{marginTop: 16}}>
+            <Link to={'/products'}  onClick={handleClick} className="creaeUser" style={{marginTop: 16}}>
                 <div className="createUserBtn">Edit Product</div>
-            </button>
+            </Link>
         </form>
             </div>
         </div>

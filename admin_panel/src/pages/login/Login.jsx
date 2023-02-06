@@ -16,6 +16,7 @@ const Login = () => {
     const handleClick = (e) => {
         e.preventDefault();
         login(dispatch, { email, password });
+        window.location.href="/";
     };
 	
         return(

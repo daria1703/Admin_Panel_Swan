@@ -1,7 +1,28 @@
 .userList{
-    flex: 4
+    flex: 4;
 }
 
-.iconuser{
-    display: flex;
+/* .productListImg{
+    height: 60px;
+    width: 60px;
+    border: 1px solid #ddd;
+    margin-right:20px ;
 }
+
+.th1{
+    border: 1px solid #ddd;
+    padding: 5px ;
+}
+
+.th2{
+    border: 1px solid #ddd;
+    width: 150px;
+    padding: 5px ;
+    font-weight: normal;
+}
+.th3{
+    border: 1px solid #ddd;
+    width: 430px ;
+    padding: 5px;
+    font-weight: normal;
+} */

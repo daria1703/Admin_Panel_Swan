@@ -1,9 +1,36 @@
 import React from 'react'
 import "./user.css"
-import user from '../../img/userProfile.png'
-import {Link} from "react-router-dom"
+import userimg from '../../img/userProfile.png'
+import {Link, useLocation} from "react-router-dom"
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import { updateUser } from "../../redux/apiCalls";
+import { useDispatch } from "react-redux";
 
 export default function User() {
+
+    const location = useLocation();
+    const userId = location.pathname.split("/")[2];
+    const [inputs, setInputs] = useState({});
+    const [refresh, setRefresh] = useState(false);
+    const dispatch = useDispatch();
+
+    const user = useSelector((state) =>
+        state.user.users.find((user) => user._id === userId)
+    );
+
+    const handleChange = (e) => {
+        setInputs((prev) => {
+        return { ...prev, [e.target.name]: e.target.value };
+        });
+    };
+
+    const handleClick = (e) => {
+        const user = { ...inputs};
+        updateUser(userId, user, dispatch);
+        window.location.reload(true)
+    };
+
   return (
     <div className='userPage'>
         <div className="titleContainer">
@@ -17,10 +44,10 @@ export default function User() {
         <div className="userContainer">
             <div className="userShow">
                 <div className="userShowTop">
-                    <span><img src={user} alt="user" className='userImg'/></span>
-                    <span className="userName">User Name</span>
-                    <span className='userEmail'>test@gmail.com</span>
-                    <span className="userId">ID: 123456</span>
+                    <span><img src={userimg} alt="user" className='userImg'/></span>
+                    <span className="userName">{user.name} {user.lastName}</span>
+                    <span className='userEmail'>{user.email}</span>
+                    <span className="userId">ID: {user._id}</span>
                 </div>
                 <div className="userShowBottom"></div>
             </div>
@@ -29,19 +56,19 @@ export default function User() {
             <form className="userForm">
                 <div className="inputForm">
                     <label className="imputLabelForm">User Name</label>
-                    <input type="test" name="user name"  placeholder="Enter User Name"/>
+                    <input type="test" name="name"  placeholder="Enter User Name" onChange={handleChange}/>
                 </div>
                 <div className="inputForm">
                     <label className="imputLabelForm">User Last Name</label>
-                    <input type="test" name="user last name" placeholder='Enter User Last Name'  />
+                    <input type="test" name="lastName" placeholder='Enter User Last Name'  onChange={handleChange}/>
                 </div>
                 <div className="inputForm">
                     <label className="imputLabelForm">User Email</label>
-                    <input type="email" name="user email" placeholder='Enter User Email'  />
+                    <input type="email" name="email" placeholder='Enter User Email' onChange={handleChange} />
                 </div>
-                <a className="btn creaeUser" href="" style={{padding: 0}}>
+                <button onClick={handleClick} className="btn creaeUser" style={{padding: 0}}>
                     <div className="createUserBtn">Update</div>
-                </a>
+                </button>
             </form>
             </div>
         </div>

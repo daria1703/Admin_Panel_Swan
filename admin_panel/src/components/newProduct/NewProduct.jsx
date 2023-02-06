@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 export default function NewProduct() {
 
 const [inputs, setInputs] = useState({});
-const [file, setFile] = useState(null);
 const [cat, setCat] = useState([]);
 const [size, setSize] = useState([]);
 const dispatch = useDispatch();
@@ -30,7 +29,7 @@ const handleChange = (e) => {
 //   },[dispatch]);
 
   const handleClick = (e) => {
-        const product = { ...inputs, categories: cat, size: size };
+        const product = { ...inputs, category: cat, size: size };
           addProduct(product, dispatch);
   };
 
@@ -54,7 +53,7 @@ const handleChange = (e) => {
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Short Description</label>
-                <input name='shotr_description' className="createInput" type="text" placeholder='Enter Short Description' onChange={handleChange} />
+                <input name='short_description' className="createInput" type="text" placeholder='Enter Short Description' onChange={handleChange} />
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Metter</label>
@@ -70,7 +69,7 @@ const handleChange = (e) => {
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Brand</label>
-                <input name='banrd' className="createInput" type="text" placeholder='Enter Brand' onChange={handleChange} />
+                <input name='brand' className="createInput" type="text" placeholder='Enter Brand' onChange={handleChange} />
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Quantity</label>
@@ -86,11 +85,11 @@ const handleChange = (e) => {
             </div>
             <div className='userCreateInput' style={{width:300}}>
                 <label className="createLabel">Description</label>
-                <input name='desctiption' className="createInput" type="text" placeholder='Enter Description' onChange={handleChange} />
+                <input name='description' className="createInput" type="text" placeholder='Enter Description' onChange={handleChange} />
             </div>
-            <button onClick={handleClick} className="creaeUser" style={{marginTop: 16}}>
+            <Link to={'/products'} onClick={handleClick} className="creaeUser" style={{marginTop: 16}}>
                 <div className="createUserBtn">Create New Product</div>
-            </button>
+            </Link>
         </form>
             </div>
     </div>

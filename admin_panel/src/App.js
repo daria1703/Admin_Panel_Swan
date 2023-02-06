@@ -32,7 +32,7 @@ function App() {
               <Route path="/users">
                 <UserList />
               </Route>
-              <Route path="/user/:userId">
+              <Route path="/users/:userId">
                 <User />
               </Route>
               <Route path="/createUser">
@@ -41,7 +41,7 @@ function App() {
               <Route path="/products">
                 <ProductsList />
               </Route>
-              <Route path="/products/:productId">
+              <Route path="/product/:productId">
                 <Product />
               </Route>
               <Route path="/newproduct">
