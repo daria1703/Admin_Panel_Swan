@@ -45,12 +45,6 @@ export default function ProductsList() {
             <th className='th2'>
               {product.quantity}
             </th>
-            {/* Nazwisko:  {person.lastName + " "} <br />
-                Email:  {person.email + " "} <br />
-                Płeć {person.sex + " "} <br />
-                Hasło: {person.password + " "} <br /> */}
-            {/* Powtórzone hasło: {person.reEnteredPassword + " "} <br /> */}
-            {/* Id:  {person._id}*/}
             <th className='th1'><div className="iconuser">
               <Link class="link-btn2" to={`/product/${product._id}`}>
                 <div className="btnUserEdit">

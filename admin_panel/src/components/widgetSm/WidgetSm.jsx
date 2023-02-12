@@ -26,11 +26,6 @@ export default function WidgetSm() {
         {users.map((user) => (
             <li className="widgetSmListItem" key={user._id}>
                 <p className="userData">{user.name} {user.lastName} </p>
-            <Link className='userA' to={`/user/${user._id}`}>
-                <div className="btnUserEdit">
-                  <CreateIcon /> 
-                </div>
-            </Link>
             </li>
             ))}
         </ul>

@@ -1,55 +1,60 @@
 import React from 'react'
 import "./widgetlg.css"
 import { useEffect, useState } from "react";
-import { userRequest } from "../../requestMethods";
 import {format} from "timeago.js"
+import { DataGrid} from '@mui/x-data-grid';
 
 export default function WidgetSm() {
 
-    const [orders, setOrders] = useState([]);
+  const stripe = require('stripe')('sk_test_51MKs1lAJd6bDnz1SeM1wIXvZKIIxzKEr95t3W3yh2tZEfidJaGRS5t73YKL10sxYx4doBKSrvEG1hFD2KOYzfbQm00nZwXChTe');
+
+ 
+    const [paymentList, setPaymentList] = useState([]);
+  
+    const columns = [
+      { field: 'id', headerName: 'ID', width: 250 },
+      { field: 'amount', headerName: 'Amount (USD)', width: 130, type: 'number' },
+      {
+        field: 'date',
+        headerName: 'Date Of Payment',
+        width: 200,
+      },
+      {
+        field: 'status',
+        headerName: 'Status Payment',
+        width: 200,
+      },
+      
+      
+    ];
+  
 
     useEffect(() => {
-      const getOrders = async () => {
-        try {
-          const res = await userRequest.get("orders/?new=true");
-          setOrders(res.data);
-        } catch {}
+      const retrievePaymentData = async () => {
+        const payments = await stripe.charges.list({ limit: 100 });
+        setPaymentList(
+          payments.data.map((payment: any) => ({
+            ...payment,
+            date: format(payment.created * 1000),
+            status: payment.status,
+            name: payment.billing_details.name,
+            amount: payment.amount / 100
+          }))
+        );
       };
-      getOrders();
+  
+      retrievePaymentData();
     }, []);
 
-    const Button = ({type}) =>{
-        return <a className='lgbuttona' href=""><div className={"lgButton " + type}>{type}</div> </a>
-    }
-
   return (
-    <div className="wigdetLg">
-        <h3 className="widgetLgTitle">Last Orders</h3>
-        <table className='widgetLgTbale'>
-            <tr className="widgetLgTr">
-                <th className="widgetLgTh">Costumer</th>
-                <th className="widgetLgTh">Date</th>
-                <th className="widgetLgTh">Amount</th>
-                <th className="widgetLgTh">Status</th>
-            </tr>
-            {orders.map((order) => (
-            <tr className="widgetLgTr" key={order._id}>
-                <td className='widgetLgUser'>
-                    <span className='userNameLg'>{order.userId}</span>
-                </td>
-                <td className='widgetLgData'>
-                    <span className='lgData'>{format(order.createdAt)}</span>
-                </td>
-                <td className='widgetLgAmount'>
-                    <span className='lgAmount'>${order.amount}</span>
-                </td>
-                <td className='widgetLgStatus'>
-                    <Button type={order.status}/>
-                </td>
-            </tr>
-            
-            ))}
-        </table>
-    </div>
+    <div className='userList'>
+    <DataGrid
+    rows={paymentList}
+    columns={columns}
+    pageSize={7}
+    rowsPerPageOptions={[5]}
+    getRowId = {(row: any) =>  row.name + row.id}
+    checkboxSelection
+  /></div>
   )
 }

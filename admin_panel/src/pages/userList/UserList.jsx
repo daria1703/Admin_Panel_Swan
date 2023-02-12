@@ -1,6 +1,6 @@
 import React from 'react'
 import "./userList.css"
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid} from '@mui/x-data-grid';
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';

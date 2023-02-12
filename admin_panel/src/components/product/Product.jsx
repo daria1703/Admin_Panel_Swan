@@ -38,8 +38,6 @@ export default function Product() {
     
     const product = { ...inputs, category: cat, size: size};
     updateProduct(productId, product, dispatch);
-    // e.preventDefault();
-    // window.location.reload(false)
 };
 
   return (

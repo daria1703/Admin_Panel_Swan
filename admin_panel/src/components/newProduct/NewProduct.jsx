@@ -24,10 +24,6 @@ const handleChange = (e) => {
     setSize(e.target.value.split(","))
   }
 
-//   useEffect(()=>{
-//     getProducts(dispatch);
-//   },[dispatch]);
-
   const handleClick = (e) => {
         const product = { ...inputs, category: cat, size: size };
           addProduct(product, dispatch);

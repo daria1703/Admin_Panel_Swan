@@ -1,8 +1,6 @@
 import React from 'react'
 import "./sitebar.css"
 import HomeIcon from '@mui/icons-material/Home';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import ShowChartIcon from '@mui/icons-material/ShowChart';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -20,24 +18,6 @@ export default function Sitebar() {
                                 Home
                         </li>
                     </a>
-                    <a href="/analytics" className="sidebarLink">
-                        <li className="sitebarListItem">
-                            <BarChartIcon style={{marginRight:5, fontSize:20}}/>
-                                Analytics
-                        </li>
-                    </a>
-                    <a href='/sales' className="sidebarLink">
-                        <li className="sitebarListItem">
-                            <ShowChartIcon style={{marginRight:5, fontSize:20}}/>
-                                Sales
-                        </li>
-                    </a>
-                    <a href="/income" className="sidebarLink">
-                        <li className="sitebarListItem">
-                            <BarChartIcon style={{marginRight:5, fontSize:20}}/>
-                                Income
-                        </li>
-                    </a>
                 </ul>
                 <h3 className="sitebarTitle">Quick Menu</h3>
                 <ul className="sidebarList">
@@ -53,7 +33,7 @@ export default function Sitebar() {
                                 Products
                         </li>
                     </a>
-                    <a href="/orders" className="sidebarLink">
+                    <a href="/order" className="sidebarLink">
                         <li className="sitebarListItem">
                             <BorderColorIcon style={{marginRight:5, fontSize:20}}/>
                                 Orders

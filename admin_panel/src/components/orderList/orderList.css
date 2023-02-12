@@ -1,0 +1,95 @@
+.orderPage{
+    flex: 4
+}
+
+.titleContainer{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 30px 30px 0 30px;
+}
+
+.userTitle{
+    color: #103946;
+    font-size: 36px;
+}
+
+.creaeUser{
+    text-decoration: none;
+}
+
+.createUserBtn{
+    background-color: #103946;
+    color: #fff;
+    border: 1px solid #103946;
+    padding: 10px;
+    text-align: center;
+}
+
+.createUserBtn:hover{
+    background-color: #FFF;
+    color: #103946;
+    border: 1px solid #103946;
+    padding: 10px;
+    text-align: center;
+}
+
+.userContainer{
+    padding: 30px;
+}
+
+.userShow{
+    flex: 1;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.userUpdate{
+    flex: 2;
+    border: 1px solid #ddd;
+}
+
+.userShowTop{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 0px;
+}
+
+.userImg{
+    width: 40px;
+    height: 40px;
+}
+
+.userForm{
+    padding: 0px 0px 20px 20px;
+}
+
+.inputForm{
+    padding-bottom: 20px;
+    width: 350px;
+}
+
+ form > .inputForm > input {
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    width: 40%;
+    font-size: 1rem;
+    display: flex;
+    background-color: transparent;
+}
+
+::placeholder{
+    color: #00000077
+}
+
+.imputLabelForm{
+    padding-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.iconuser{
+    display: flex
+}
